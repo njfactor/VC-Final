@@ -17,7 +17,7 @@ $(document).on("pagebeforeshow","#pagetwo",function(event,data)
 
 function addBillToDisplay(index)
 {
-	var $bill=$('<div class="ui-block-a" id="bd" style="text-align:left;width:40%;">' + cart[index].pdName + '</div><div class="ui-block-b" id="bd" style="text-align:right;width:10%;">' + cart[index].qty + '</div><div class="ui-block-c" id="bd" style="text-align:right;width:25%;">' + cart[index].mallPrice.toFixed(2) + '</div><div class="ui-block-d" id="bd" style="text-align:right;width:25%;">' + cart[index].subTotal.toFixed(2) + '</div>').appendTo(document.getElementById('billDetails'));
+	var $bill=$('<div class="ui-block-a" id="bd" style="text-align:left;width:40%;">' + cart[index].pdName + '</div><div class="ui-block-b" id="bd" style="text-align:right;width:10%;">' + cart[index].qty + '</div><div class="ui-block-c" id="bd" style="text-align:right;width:25%;">Rs. ' + cart[index].mallPrice.toFixed(2) + '</div><div class="ui-block-d" id="bd" style="text-align:right;width:25%;">Rs. ' + cart[index].subTotal.toFixed(2) + '</div>').appendTo(document.getElementById('billDetails'));
 }
 
 
@@ -29,7 +29,7 @@ function sendToBiller()
                var finurl=server_url;
                dat= JSON.stringify(cartForServer);
                
-			   if(confirm('Do you really wish to submit the cart?\nCartID: '+ cartForServer.cartID ))
+			   if(confirm('To submit the cart please provide the following QR Code or this CartID: '+ cartForServer.cartID+' at the billing counter.' ))
 				{
                 $.ajax
                ({
@@ -49,7 +49,7 @@ function sendToBiller()
 								
  							var urlForBiller = getQueryStringForBiller(server_url,cartForServer.cartID);
 						//  alert(urlForBiller);
-							alert('Please show the QR Code or Cart ID at billing counter.\nCartID: '+cartForServer.cartID);
+						//	alert('Please show the QR Code or Cart ID at billing counter.\nCartID: '+cartForServer.cartID);
 							app.encode(urlForBiller); 
 						//	alert('Thank you for shopping with Virtual Cart.');
                        },
